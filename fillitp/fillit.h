@@ -2,6 +2,10 @@
 #ifndef FILLIT_H
 # define FILLIT_H
 
-int		validate_tetramino(const char *shape, t_point ***points);
+# include <unistd.h>
+# include "../libft/libft.h"
+# include <fcntl.h>
+
+//int		valid_tetramino(const char *shape, t_point ***points);
 
 #endif

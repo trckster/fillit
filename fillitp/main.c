@@ -21,7 +21,13 @@ int		main(int argc, char **argv)
 {
 	if (argc != 2)
 	{
-		show_usage();
-		return (0);
+        show_usage();
+		return (1);
 	}
+    if (argv[1] == NULL)
+    {
+        ft_putstr("error\n");
+        return (1);
+    }
+    return (0);
 }
