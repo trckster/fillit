@@ -6,38 +6,31 @@
 #    By: apearl <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/18 23:28:51 by apearl            #+#    #+#              #
-#    Updated: 2019/10/12 15:24:54 by bkayleen         ###   ########.fr        #
+#    Updated: 2019/10/12 16:51:02 by apearl           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+NAME = fillit
+SRC = ./fillitp/*.c
+OBJ = ./fillitp/*.o
+HDR = ./fillitp/fillit.h
 FLAG = -Wall -Wextra -Werror
 
-NAME = fillit
+LIBFT = libft/
 
-SRC = main.c
+all:	$(NAME)
 
-OBJ = $(SRC:.c=.o)
-
-all: 
-	cd fillit
-	$(NAME)
-
-$(NAME): $(OBJ)
-	@ar rc $(NAME) $(OBJ)
-	@echo "$(NAME) created"
-	@ranlib $(NAME)
-	@echo "$(NAME) indexed"
-
-%.o: %.c
-	@gcc $(FLAG) -c $< -o $@
-
+$(NAME):
+	make -C $(LIBFT)
+	gcc $(FLAG) -o $(NAME) $(SRC) -I $(HDR) -L. libft/libft.a
+   	
 clean:
 	@rm -f $(OBJ)
-	@echo "OBJ deleted"
+	make -C $(LIBFT) clean
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo "$(NAME) deleted"
+	make -C $(LIBFT) fclean 
 
 re: fclean all
 
