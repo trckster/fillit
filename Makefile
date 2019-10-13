@@ -11,9 +11,9 @@
 # **************************************************************************** #
 
 NAME = fillit
-SRC = ./fillitp/*.c
-OBJ = ./fillitp/*.o
-HDR = ./fillitp/fillit.h
+SRC = ./src/*.c
+OBJ = ./src/*.o
+HDR = ./fillit/fillit.h
 FLAG = -Wall -Wextra -Werror
 
 LIBFT = libft/
@@ -26,7 +26,7 @@ $(NAME):
    	
 clean:
 	@rm -f $(OBJ)
-	make -C $(LIBFT) clean
+	make -C $(LIBFT) fclean
 
 fclean: clean
 	@rm -f $(NAME)
