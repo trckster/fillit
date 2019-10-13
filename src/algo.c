@@ -6,7 +6,7 @@
 /*   By: bkayleen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/13 16:00:58 by bkayleen          #+#    #+#             */
-/*   Updated: 2019/10/13 16:38:44 by bkayleen         ###   ########.fr       */
+/*   Updated: 2019/10/13 17:20:27 by bkayleen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,30 +22,34 @@ int		get_init_square_size(t_item *items)
 	return (ft_sqrt(size * 4));
 }
 
-void	clear_square(char *square, int size)
+void	clear_square(char **square, int size)
 {
-	int i;
+	int	i;
+	int	j;
 
 	i = 0;
-	while (i < size * size)
-		square[i++] = '.';
-}
-
-void	fill_square(char *sq, t_item *items, int curr_item)
-{
-	if (!items[curr_item])
-		return (1);
+	while (i < size)
+	{
+		j = 0;
+		while (j < size)
+			square[i][j++] = '.';
+		i++;
+	}
 }
 
 int		try_accommodate(t_item *items, int square_size)
 {
-	char	*square;
+	char	**square;
+	int		i;
 
-	square = (char *)malloc(square_size * square_size);
+	i = 0;
+	square = (char **)malloc(square_size * sizeof(char *));
+	while (i < square_size)
+		square[i++] = (char *)malloc(square_size * sizeof(char));
 	clear_square(square, square_size);
-	if (fill_square(square, items, 0))
+	if (fill_square(square, square_size, items, 0))
 	{
-		print_answer(square);
+		print_answer(square, square_size);
 		return (1);
 	}
 	return (0);

@@ -1,30 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   fill_square.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bkayleen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/13 15:57:29 by bkayleen          #+#    #+#             */
-/*   Updated: 2019/10/13 17:11:02 by bkayleen         ###   ########.fr       */
+/*   Created: 2019/10/13 17:02:26 by bkayleen          #+#    #+#             */
+/*   Updated: 2019/10/13 17:21:59 by bkayleen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
+#include "fillit.h"
 
-# include <unistd.h>
-# include "../libft/libft.h"
-# include <fcntl.h>
-# include <stdio.h> // delete it after end of work
+int		takes_place(char *sq){} // not completed 
 
-typedef struct	s_item
+void	fill_square(char *sq, int square_size, t_item *items, int curr_item)
 {
-	char field[4][4];
-}				t_item;
+	int		i;
+	int		j;
 
-int				ft_sqrt(int n);
-int				fillit(char *s);
-void			fill_square(char *square, int square_size, t_item *items, int curr_item);
-
-#endif
+	if (!items[curr_item])
+		return (1);
+	// check about two-dimensional array ??
+	i = 0;
+	while (i < square_size)
+	{
+		j = 0;
+		while (j < square_size)
+		{
+			if (takes_place(sq, i, j, square_size))
+			j++;
+		}
+		i++;
+	}	
+}
