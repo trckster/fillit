@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   algo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bkayleen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/13 15:57:29 by bkayleen          #+#    #+#             */
-/*   Updated: 2019/10/13 16:17:15 by bkayleen         ###   ########.fr       */
+/*   Created: 2019/10/13 16:00:58 by bkayleen          #+#    #+#             */
+/*   Updated: 2019/10/13 16:15:40 by bkayleen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
+#include "fillit.h"
 
-# include <unistd.h>
-# include "../libft/libft.h"
-# include <fcntl.h>
-# include <stdio.h> // delete it after end of work
-
-typedef struct	s_item
+int		get_init_square_size(t_item *items)
 {
-	char field[4][4];
-}				t_item;
+	int		size;
 
-int				ft_sqrt(int n);
-int				fillit(char *s);
+	size = 0;
+	while (items[size])
+		size++;
+	return (ft_sqrt(size * 4));
+}
 
-#endif
+int		process_algorithm(t_item *items)
+{
+	int		init_size;
+
+	init_size = get_init_square_size(items);
+}

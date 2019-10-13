@@ -6,14 +6,14 @@
 #    By: apearl <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/18 23:28:51 by apearl            #+#    #+#              #
-#    Updated: 2019/10/12 16:51:02 by apearl           ###   ########.fr        #
+#    Updated: 2019/10/13 16:04:56 by bkayleen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fillit
 SRC = ./src/*.c
 OBJ = ./src/*.o
-HDR = ./fillit/fillit.h
+HDR = ./src/fillit.h
 FLAG = -Wall -Wextra -Werror
 
 LIBFT = libft/

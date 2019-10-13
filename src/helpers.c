@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   helpers.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bkayleen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/13 15:57:29 by bkayleen          #+#    #+#             */
-/*   Updated: 2019/10/13 16:17:15 by bkayleen         ###   ########.fr       */
+/*   Created: 2019/10/13 16:09:38 by bkayleen          #+#    #+#             */
+/*   Updated: 2019/10/13 16:16:43 by bkayleen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
+#include "fillit.h"
 
-# include <unistd.h>
-# include "../libft/libft.h"
-# include <fcntl.h>
-# include <stdio.h> // delete it after end of work
-
-typedef struct	s_item
+int		ft_sqrt(int n)
 {
-	char field[4][4];
-}				t_item;
+	int	i;
 
-int				ft_sqrt(int n);
-int				fillit(char *s);
-
-#endif
+	if (n < 0)
+		return (-1);
+	while (i * i < n)
+		i++;
+	return (i);
+}
