@@ -12,24 +12,14 @@
 
 #include "fillit.h"
 
-void    show_usage()
+int     fillit(char *filename)
 {
-	ft_putstr("usage: <>< ><> < <<<<< >>>>\n");
-}
-
-void    show_error()
-{
-	ft_putstr("error\n");
-}
-
-int     main(int argc, char **argv)
-{
-	if (argc != 2)
-	{
-        show_usage();
-		return (1);
-	}
-	if (!fillit(argv[0]))
-		show_error();
-    return (0);
+	if (!filename)
+		return (0);
+//	check_file_input(filename);
+//  load_data_from_file();
+//  process_(recursive?)_algorithm()
+//  print_answer()
+//  return 0 or 1;
+	return (1);
 }
