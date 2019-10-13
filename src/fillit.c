@@ -6,19 +6,31 @@
 /*   By: bkayleen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 14:16:14 by bkayleen          #+#    #+#             */
-/*   Updated: 2019/10/13 15:55:14 by bkayleen         ###   ########.fr       */
+/*   Updated: 2019/10/13 16:53:50 by bkayleen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
+t_item	*laod_data()
+{
+	// Узнать сколько нужно выделить памяти
+	// Выделить память под нужноe количество
+	// Положить нуль в конец
+	// Заполнить массив t_item'ов на основе входных данных
+	// Вернуть указатель на первый элемент
+	
+	// Если при считывании происходит ошибка или становится понятно что даны неправильные тетрамино,
+	// возвратить 0
+}
+
 int     fillit(char *filename)
 {
+	t_item *data;
+	
 	if (!filename)
 		return (0);
-	t_item *data[26];
-//	check_file_input(filename);
-//  load_data_from_file(data);
+	data = load_data();
 //  process_(recursive?)_algorithm(data)
 //  print_answer()
 //  return 0 or 1;
