@@ -12,10 +12,11 @@
 
 #ifndef FILLIT_H
 # define FILLIT_H
-
 # include <unistd.h>
 # include "../libft/libft.h"
 # include <fcntl.h>
+# define BUFF_SIZE 22
+
 # include <stdio.h> // delete it after end of work
 
 typedef struct	s_item

@@ -14,18 +14,30 @@
 
 t_item	*load_data()
 {
-    char    buff[BUFF_SIZE];
+    char    buf[BUFF_SIZE];
     int     fd;
     int     need_amount;
+    t_item  *tetro;
+    int     i;
     
-    fd = open(filename, O_RDONLY);
-    need_amount = read(fd, buf, BUFF_SIZE);
-    
+    i = 0;
     // Узнать сколько нужно выделить памяти
-	// Выделить память под нужноe количество
-    buf = (char *) malloc (sizeof (char *));
+    // Выделить память под нужноe количество
+    fd = open(filename, O_RDONLY);
+    buf = (char *) malloc (sizeof (char *) * 22);
+    need_amount = read(fd, buf, BUFF_SIZE);
+    if (need_amount < 0)
+        return (NULL);
+    //buf[need_amount] = '\0'
+    tetro = (t_item *)malloc(sizeof (t_item));
+    while (i < 4)
+    {
+        ft_strncpy(tetro->field[i], buf + i * 5, 4);
+        tetro->field[i][4] = '\0';
+        i++;
+    }
+
     // Положить нуль в конец
-    buf[need_amount] = '\0'
 	// Заполнить массив t_item'ов на основе входных данных
 	// Вернуть указатель на первый элемент
 	// Если при считывании происходит ошибка или становится понятно что даны неправильные тетрамино,
