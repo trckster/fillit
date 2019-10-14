@@ -22,34 +22,36 @@ int		get_init_square_size(t_item *items)
 	return (ft_sqrt(size * 4));
 }
 
-void	clear_square(char **square, int size)
+void	clear_square(t_field *field)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (i < size)
+	while (i < field->size)
 	{
 		j = 0;
-		while (j < size)
-			square[i][j++] = '.';
+		while (j < field->size)
+			field->square[i][j++] = '.';
 		i++;
 	}
 }
 
 int		try_accommodate(t_item *items, int square_size)
 {
-	char	**square;
+	t_field *field;
 	int		i;
 
 	i = 0;
-	square = (char **)malloc(square_size * sizeof(char *));
+	field = (t_field *)malloc(sizeof(t_field));
+	field->square = (char **)malloc(square_size * sizeof(char *));
 	while (i < square_size)
-		square[i++] = (char *)malloc(square_size * sizeof(char));
-	clear_square(square, square_size);
-	if (fill_square(square, square_size, items, 0))
+		field->square[i++] = (char *)malloc(square_size * sizeof(char));
+	field->size = square_size;
+	clear_square(field);
+	if (fill_square(field, items, 0))
 	{
-		print_answer(square, square_size);
+		print_answer(field);
 		return (1);
 	}
 	return (0);

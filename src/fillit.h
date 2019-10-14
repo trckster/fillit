@@ -33,6 +33,12 @@ typedef struct  s_point
 	short y;
 }               t_point;
 
+typedef struct  s_field
+{
+	char    **square;
+	int     size;
+}               t_field;
+
 int				ft_sqrt(int n);
 int				fillit(char *s);
 void			fill_square(char *square, int square_size, t_item *items, int curr_item);
