@@ -12,25 +12,28 @@
 
 #include "fillit.h"
 
-int		takes_place(char *sq){} // not completed 
-
-void	fill_square(char *sq, int square_size, t_item *items, int curr_item)
+int		takes_place(char **sq, t_point *dot, int sz, t_item *item)
 {
-	int		i;
-	int		j;
+	return (1);
+}
+
+int 	fill_square(char **sq, int square_size, t_item **items, int curr_item)
+{
+	t_point *dot;
 
 	if (!items[curr_item])
 		return (1);
-	// check about two-dimensional array ??
-	i = 0;
-	while (i < square_size)
+	dot->x = 0;
+	while (dot->x < square_size)
 	{
-		j = 0;
-		while (j < square_size)
+		dot->y = 0;
+		while (dot->y < square_size)
 		{
-			if (takes_place(sq, i, j, square_size))
-			j++;
+			if (takes_place(sq, dot, square_size, items[curr_item]))
+				return (fill_square(sq, square_size, items, curr_item));
+			dot->y++;
 		}
-		i++;
-	}	
+		dot->x++;
+	}
+	return (0);
 }

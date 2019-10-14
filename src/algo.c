@@ -55,7 +55,7 @@ int		try_accommodate(t_item *items, int square_size)
 	return (0);
 }
 
-int		process_algorithm(t_item *items)
+int		process_algorithm(t_item **items)
 {
 	int		square_size;
 

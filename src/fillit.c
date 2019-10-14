@@ -46,12 +46,12 @@ t_item	*load_data()
 
 int     fillit(char *filename)
 {
-	t_item *data;
+	t_item **data;
 	
 	if (!filename)
 		return (0);
 	data = load_data();
-//  process_(recursive?)_algorithm(data)
+	process_algorithm(data);
 //  print_answer()
 //  return 0 or 1;
 	return (1);

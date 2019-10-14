@@ -29,7 +29,7 @@ int     main(int argc, char **argv)
         show_usage();
 		return (1);
 	}
-	if (!fillit(argv[0]))
+	if (!fillit(argv[1]))
 		show_error();
     return (0);
 }

@@ -21,8 +21,17 @@
 
 typedef struct	s_item
 {
-	char field[4][4];
+	s_point *p1;
+	s_point *p2;
+	s_point *p3;
+	s_point *p4;
 }				t_item;
+
+typedef struct  s_point
+{
+	short x;
+	short y;
+}               t_point;
 
 int				ft_sqrt(int n);
 int				fillit(char *s);
