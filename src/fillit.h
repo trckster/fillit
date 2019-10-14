@@ -28,9 +28,9 @@ typedef struct  s_point
 typedef struct	s_item
 {
 	t_point *p1;
-	struct s_point *p2;
-	struct s_point *p3;
-	struct s_point *p4;
+	t_point *p2;
+	t_point *p3;
+	t_point *p4;
 }				t_item;
 
 typedef struct  s_field
