@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_square.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkayleen <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: apearl <apearl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/13 17:02:26 by bkayleen          #+#    #+#             */
-/*   Updated: 2019/10/13 17:21:59 by bkayleen         ###   ########.fr       */
+/*   Updated: 2019/10/14 17:59:49 by apearl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,20 @@
 
 int     item_in_ranges(t_item *item, t_point *dot, int size)
 {
-	if (item->p1->x + dot->x >= 0 && -item->p1-y + dot->y < size)
+	if (item->p1->x + dot->x >= 0 && -item->p1->y + dot->y < size)
 		return (0);
-	if (item->p2->x + dot->x >= 0 && -item->p2-y + dot->y < size)
+	if (item->p2->x + dot->x >= 0 && -item->p2->y + dot->y < size)
 		return (0);
-	if (item->p3->x + dot->x >= 0 && -item->p3-y + dot->y < size)
+	if (item->p3->x + dot->x >= 0 && -item->p3->y + dot->y < size)
 		return (0);
-	if (item->p4->x + dot->x >= 0 && -item->p4-y + dot->y < size)
+	if (item->p4->x + dot->x >= 0 && -item->p4->y + dot->y < size)
 		return (0);
 	return (1);
 }
 
 int		takes_place(t_field *field, t_point *dot, t_item *item, char symbol)
 {
-	if (!item_in_ranges(item, dot))
+	if (!item_in_ranges(item, dot, 4))
 		return (0);
 	if (field->square[item->p1->x + dot->x][-item->p1->y + dot->y] != '.')
 		return (0);

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   fillit.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkayleen <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: apearl <apearl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 14:16:14 by bkayleen          #+#    #+#             */
-/*   Updated: 2019/10/13 16:53:50 by bkayleen         ###   ########.fr       */
+/*   Updated: 2019/10/14 18:00:40 by apearl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-t_item	*load_data()
+t_item	*load_data(char *filename)
 {
     char    buf[BUFF_SIZE];
     int     fd;
@@ -24,7 +24,7 @@ t_item	*load_data()
     // Узнать сколько нужно выделить памяти
     // Выделить память под нужноe количество
     fd = open(filename, O_RDONLY);
-    buf = (char *) malloc (sizeof (char *) * 22);
+    buf =  (char *) malloc (sizeof (char *) * BUFF_SIZE);
     need_amount = read(fd, buf, BUFF_SIZE);
     if (need_amount < 0)
         return (NULL);
@@ -50,9 +50,9 @@ int     fillit(char *filename)
 	
 	if (!filename)
 		return (0);
-	data = load_data();
+	data = load_data(char *filename);
 	process_algorithm(data);
-//  print_answer()
+    print_answer()
 //  return 0 or 1;
 	return (1);
 }

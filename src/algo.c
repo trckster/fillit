@@ -12,7 +12,7 @@
 
 #include "fillit.h"
 
-int		get_init_square_size(t_item *items)
+int		get_init_square_size(t_item **items)
 {
 	int		size;
 
@@ -49,7 +49,7 @@ int		try_accommodate(t_item *items, int square_size)
 		field->square[i++] = (char *)malloc(square_size * sizeof(char));
 	field->size = square_size;
 	clear_square(field);
-	if (fill_square(field, items, 0))
+	if (fill_square(field, &items, 0))
 	{
 		print_answer(field);
 		return (1);
@@ -62,7 +62,9 @@ int		process_algorithm(t_item **items)
 	int		square_size;
 
 	square_size = get_init_square_size(items);
-	while (!try_accommodate(items, square_size))
+	while (!try_accommodate(*items, square_size))
 		square_size++;
 	return (1);
 }
+
+
