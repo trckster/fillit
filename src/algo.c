@@ -37,6 +37,25 @@ void	clear_square(t_field *field)
 	}
 }
 
+void    print_answer(t_field *field)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (i < field->size)
+	{
+		j = 0;
+		while (j < field->size)
+		{
+			ft_putchar(field->square[i][j]);
+			j++;
+		}
+		ft_putchar('\n');
+		i++;
+	}
+}
+
 int		try_accommodate(t_item *items, int square_size)
 {
 	t_field *field;
