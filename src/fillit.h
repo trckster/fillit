@@ -42,6 +42,8 @@ typedef struct  s_field
 int				ft_sqrt(int n);
 int				fillit(char *s);
 int 	        fill_square(t_field *field, t_item **items, int curr_item);
+int		        process_algorithm(t_item **items);
+void            print_answer(t_field *field);
 //void			fill_square(char *square, int square_size, t_item *items, int curr_item);
 
 #endif
