@@ -48,9 +48,10 @@ int     fillit(char *filename)
 	if (!filename)
 		return (0);
 	data = load_data(char *filename);
+	if (!data)
+		return (0);
 	process_algorithm(data);
     print_answer();
-//  return 0 or 1;
 	return (1);
 }
 

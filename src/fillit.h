@@ -12,12 +12,13 @@
 
 #ifndef FILLIT_H
 # define FILLIT_H
+
 # include <unistd.h>
 # include "../libft/libft.h"
 # include <fcntl.h>
-# define BUFF_SIZE 21
-
 # include <stdio.h> // delete it after end of work
+
+# define BUFF_SIZE 21
 
 typedef struct  s_point
 {
@@ -44,6 +45,5 @@ int				fillit(char *s);
 int 	        fill_square(t_field *field, t_item **items, int curr_item);
 int		        process_algorithm(t_item **items);
 void            print_answer(t_field *field);
-//void			fill_square(char *square, int square_size, t_item *items, int curr_item);
 
 #endif
