@@ -16,9 +16,11 @@
 # include <unistd.h>
 # include "../libft/libft.h"
 # include <fcntl.h>
+# include <stdlib.h>
 # include <stdio.h> // delete it after end of work
 
-# define BUFF_SIZE 21
+# define BUFF_SIZE 100
+# define MAX_FD_COUNT 1025
 
 typedef struct  s_point
 {
@@ -45,5 +47,6 @@ int				fillit(char *s);
 int 	        fill_square(t_field *field, t_item **items, int curr_item);
 int		        process_algorithm(t_item **items);
 void            print_answer(t_field *field);
+int             get_next_line(const int fd, char **line);
 
 #endif
