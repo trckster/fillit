@@ -14,30 +14,33 @@
 
 int     item_in_ranges(t_item *item, t_point *dot, int size)
 {
-	printf("FUCK %d\n", size);
-	printf("IIR: %d %d, %d %d\n", item->p1->x, dot->x, -item->p1->y, dot->y);
-	printf("IIR: %d %d, %d %d\n", item->p2->x, dot->x, -item->p2->y, dot->y);
-	printf("IIR: %d %d, %d %d\n", item->p3->x, dot->x, -item->p3->y, dot->y);
-	printf("IIR: %d %d, %d %d\n", item->p4->x, dot->x, -item->p4->y, dot->y);
-	if (item->p1->x + dot->x >= 0 && -item->p1->y + dot->y < size)
-	{
-		printf("wtf\n");
+	if (item->p1->x + dot->x < 0 || item->p1->x + dot->x >= size) {
+		printf("Problem comes here %d %d\n", item->p1->x, size);
 		return (0);
 	}
-	if (item->p2->x + dot->x >= 0 && -item->p2->y + dot->y < size)
+	if (item->p2->x + dot->x < 0 || item->p2->x + dot->x >= size)
 		return (0);
-	if (item->p3->x + dot->x >= 0 && -item->p3->y + dot->y < size)
+	if (item->p3->x + dot->x < 0 || item->p3->x + dot->x >= size)
 		return (0);
-	if (item->p4->x + dot->x >= 0 && -item->p4->y + dot->y < size)
+	if (item->p4->x + dot->x < 0 || item->p4->x + dot->x >= size)
+		return (0);
+	if (-item->p1->y + dot->y < 0 || -item->p1->y + dot->y >= size)
+		return (0);
+	if (-item->p2->y + dot->y < 0 || -item->p2->y + dot->y >= size)
+		return (0);
+	if (-item->p3->y + dot->y < 0 || -item->p3->y + dot->y >= size)
+		return (0);
+	if (-item->p4->y + dot->y < 0 || -item->p4->y + dot->y >= size)
 		return (0);
 	return (1);
 }
 
 int		takes_place(t_field *field, t_point *dot, t_item *item, char symbol)
 {
-	if (!item_in_ranges(item, dot, 4))
+	printf("Fuck here comes problem if not comes item in ranges\n");
+	if (!item_in_ranges(item, dot, field->size))
 		return (0);
-	printf("Items are in range!\n");
+	printf("Item in ranges\n");
 	if (field->square[item->p1->x + dot->x][-item->p1->y + dot->y] != '.')
 		return (0);
 	if (field->square[item->p2->x + dot->x][-item->p2->y + dot->y] != '.')
@@ -46,6 +49,7 @@ int		takes_place(t_field *field, t_point *dot, t_item *item, char symbol)
 		return (0);
 	if (field->square[item->p4->x + dot->x][-item->p4->y + dot->y] != '.')
 		return (0);
+	printf("Item takes place as %c\n", symbol);
 	field->square[item->p1->x + dot->x][-item->p1->y + dot->y] = symbol;
 	field->square[item->p2->x + dot->x][-item->p2->y + dot->y] = symbol;
 	field->square[item->p3->x + dot->x][-item->p3->y + dot->y] = symbol;
@@ -59,6 +63,23 @@ void    clear_place(t_field *field, t_point *dot, t_item *item)
 	field->square[item->p1->x + dot->x][-item->p1->y + dot->y] = '.';
 	field->square[item->p1->x + dot->x][-item->p1->y + dot->y] = '.';
 	field->square[item->p1->x + dot->x][-item->p1->y + dot->y] = '.';
+}
+
+/** Log function */
+void    print_field(t_field *field)
+{
+	int i = 0, j;
+	while (i < field->size)
+	{
+		j = 0;
+		while (j < field->size)
+		{
+			printf("%c", field->square[i][j]);
+			j++;
+		}
+		printf("\n");
+		i++;
+	}
 }
 
 int 	fill_square(t_field *field, t_item **items, int curr_item)
@@ -80,7 +101,6 @@ int 	fill_square(t_field *field, t_item **items, int curr_item)
 			if (takes_place(field, dot, items[curr_item], 'A' + curr_item))
 			{
 				res = fill_square(field, items, curr_item + 1);
-				printf(">>> res=%d\n", res);
 				if (!res)
 					clear_place(field, dot, items[curr_item]);
 				return (res);

@@ -25,22 +25,22 @@ int		get_next_square(int fd, char ***fin)
 	{
 		res = get_next_line(fd, &tmp);
 		printf("GNS: %d\n", res);
-		if (ft_strlen(tmp) != 4)
-			return (0);
-		if (res < 0)
-			return (0);
 		if (!res)
 			break ;
+		if (ft_strlen(tmp) != 4)
+			return (-1);
+		if (res < 0)
+			return (-1);
 		sq[i] = tmp;
 		i++;
 	}
 	if (res)
 	{
 		get_next_line(fd, &tmp);
-	printf(">%s<\n", tmp);
-	*fin = sq;
+		*fin = sq;
+		return (1);
 	}
-	return (1);
+	return (0);
 }
 
 void	add_point(t_item *item, int i, int j, int cnt)
@@ -77,7 +77,7 @@ t_item	*get_item_from_block(char **s)
 		{
 			if (s[i][j] == '+')
 			{
-				add_point(item, j, i, cnt);
+				add_point(item, i, j, cnt);
 				cnt++;
 			}
 			j++;
@@ -106,13 +106,17 @@ t_item	**load_data(char *fn)
 	int     fd;
 	t_item	**items;
 	int		i;
+	int     res;
 
 	fd = open(fn, O_RDONLY);
 	items = (t_item **)malloc(sizeof(t_item *) * 27);
 	i = 0;
 	while (1)
 	{
-		if (!get_next_square(fd, &next_block))
+		res = get_next_square(fd, &next_block);
+		if (res < 0)
+			return (0);
+		if (!res)
 			break ;
 		logblock(next_block);
 		if (!correct_block(next_block))
