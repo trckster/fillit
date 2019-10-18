@@ -6,7 +6,7 @@
 /*   By: apearl <apearl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/13 17:02:26 by bkayleen          #+#    #+#             */
-/*   Updated: 2019/10/18 22:32:59 by bkayleen         ###   ########.fr       */
+/*   Updated: 2019/10/18 23:16:05 by bkayleen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int 	fill_square(t_field *field, t_item **items, int curr_item)
 
 	if (!items[curr_item])
 		return (1);
+	printf("FS: sq_size=%d, curr_item=%d\n", field->size, curr_item); 
 	dot = (t_point *)malloc(sizeof(t_point));
 	dot->x = 0;
 	while (dot->x < field->size)
@@ -68,7 +69,8 @@ int 	fill_square(t_field *field, t_item **items, int curr_item)
 		{
 			if (takes_place(field, dot, items[curr_item], 'A' + curr_item))
 			{
-				res = fill_square(field, items, curr_item);
+				res = fill_square(field, items, curr_item + 1);
+				printf(">>> res=%d\n", res);
 				if (!res)
 					clear_place(field, dot, items[curr_item]);
 				return (res);
@@ -77,5 +79,6 @@ int 	fill_square(t_field *field, t_item **items, int curr_item)
 		}
 		dot->x++;
 	}
+	free(dot);
 	return (0);
 }

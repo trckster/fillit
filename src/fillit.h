@@ -6,7 +6,7 @@
 /*   By: apearl <apearl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/13 15:57:29 by bkayleen          #+#    #+#             */
-/*   Updated: 2019/10/18 21:48:22 by bkayleen         ###   ########.fr       */
+/*   Updated: 2019/10/18 23:20:27 by bkayleen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,6 @@ int		        process_algorithm(t_item **items);
 void            print_answer(t_field *field);
 int             get_next_line(const int fd, char **line);
 int				correct_block(char **s);
+void			optimize_data(t_item **items);
 
 #endif

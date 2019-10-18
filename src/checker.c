@@ -6,7 +6,7 @@
 /*   By: bkayleen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 21:47:23 by bkayleen          #+#    #+#             */
-/*   Updated: 2019/10/18 22:20:55 by bkayleen         ###   ########.fr       */
+/*   Updated: 2019/10/18 22:56:20 by bkayleen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,12 @@ int		get_count(char **s, int i, int j)
 
 	if (i < 0 || i >= 4 || j < 0 || j >= 4)
 		return (0);
-	if (s[i][j] == '.' || s[i][j] == '-')
+	if (s[i][j] == '.' || s[i][j] == '+')
 		return (0);
-	s[i][j] = '-';
+	s[i][j] = '+';
 	lr = get_count(s, i + 1, j) + get_count(s, i - 1, j);
 	ud = get_count(s, i, j + 1) + get_count(s, i, j - 1);
-	return (lr + ud);
+	return (lr + ud + 1);
 }
 
 int		good_tetr(char **s)

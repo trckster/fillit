@@ -6,7 +6,7 @@
 /*   By: apearl <apearl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 14:16:14 by bkayleen          #+#    #+#             */
-/*   Updated: 2019/10/18 22:37:06 by bkayleen         ###   ########.fr       */
+/*   Updated: 2019/10/18 23:25:45 by bkayleen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int		get_next_square(int fd, char ***fin)
 	while (i < 4)
 	{
 		res = get_next_line(fd, &tmp);
+		printf("GNS: %d\n", res);
 		if (ft_strlen(tmp) != 4)
 			return (0);
 		if (res < 0)
@@ -33,7 +34,12 @@ int		get_next_square(int fd, char ***fin)
 		sq[i] = tmp;
 		i++;
 	}
+	if (res)
+	{
+		get_next_line(fd, &tmp);
+	printf(">%s<\n", tmp);
 	*fin = sq;
+	}
 	return (1);
 }
 
@@ -69,9 +75,9 @@ t_item	*get_item_from_block(char **s)
 		j = 0;
 		while (j < 4)
 		{
-			if (s[i][j] == '#')
+			if (s[i][j] == '+')
 			{
-				add_point(item, i, j, cnt);
+				add_point(item, j, i, cnt);
 				cnt++;
 			}
 			j++;
@@ -81,28 +87,40 @@ t_item	*get_item_from_block(char **s)
 	return (item);
 }
 
+void	logblock(char **s)
+{
+	ft_putstr("       <---------->\n");
+	int i = 0;
+	while (i < 4)
+	{
+			ft_putstr(s[i]);
+			ft_putchar('\n');
+			i++;
+	}
+	ft_putstr("<--------------------------->\n");
+}
+
 t_item	**load_data(char *fn)
 {
 	char    **next_block;
 	int     fd;
-	int		valid;
 	t_item	**items;
 	int		i;
 
 	fd = open(fn, O_RDONLY);
-	valid = 1;
 	items = (t_item **)malloc(sizeof(t_item *) * 27);
 	i = 0;
 	while (1)
 	{
-		valid = get_next_square(fd, &next_block);
-		valid = valid && correct_block(next_block);
-		if (valid)
-			items[i++] = get_item_from_block(next_block);
-		else
-			return (0);//free_data(items));
+		if (!get_next_square(fd, &next_block))
+			break ;
+		logblock(next_block);
+		if (!correct_block(next_block))
+			return (0);
+		items[i++] = get_item_from_block(next_block);
 	}
 	items[i] = 0;
+	printf("normal load_data ending work\n");
 	return (items);
 }
 
@@ -115,6 +133,8 @@ int     fillit(char *filename)
 	data = load_data(filename);
 	if (!data)
 		return (0);
+	printf("Start processing algoss\n");
+	optimize_data(data);
 	process_algorithm(data);
 	return (1);
 }
