@@ -13,7 +13,7 @@
 NAME = fillit
 SRC = ./src/*.c
 OBJ = ./src/*.o
-HDR = ./src/fillit.h
+HDR = ./src/
 FLAG = -Wall -Wextra -Werror
 
 LIBFT = libft/
