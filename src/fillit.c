@@ -12,6 +12,17 @@
 
 #include "fillit.h"
 
+t_item **load_data(char *fn)
+{
+	char    **next_block;
+	int     fd;
+
+	fd = open(fn, O_RDONLY);
+	while (/** FUCKEDK*/)
+	{
+	}
+}
+
 int     fillit(char *filename)
 {
 	t_item **data;
