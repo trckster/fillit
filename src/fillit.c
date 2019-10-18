@@ -6,7 +6,7 @@
 /*   By: apearl <apearl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 14:16:14 by bkayleen          #+#    #+#             */
-/*   Updated: 2019/10/18 22:30:43 by bkayleen         ###   ########.fr       */
+/*   Updated: 2019/10/18 22:37:06 by bkayleen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,17 @@ t_item	*get_item_from_block(char **s)
 
 	i = 0;
 	cnt = 0;
+	item = (t_item *)malloc(sizeof(t_item));
 	while (i < 4)
 	{
 		j = 0;
 		while (j < 4)
 		{
 			if (s[i][j] == '#')
-				add_point(item, i, j, res);
+			{
+				add_point(item, i, j, cnt);
+				cnt++;
+			}
 			j++;
 		}
 		i++;
@@ -108,10 +112,9 @@ int     fillit(char *filename)
 
 	if (!filename)
 		return (0);
-	data = load_data(char *filename);
+	data = load_data(filename);
 	if (!data)
 		return (0);
 	process_algorithm(data);
-    print_answer();
 	return (1);
 }

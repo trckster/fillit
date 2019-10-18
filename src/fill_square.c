@@ -6,7 +6,7 @@
 /*   By: apearl <apearl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/13 17:02:26 by bkayleen          #+#    #+#             */
-/*   Updated: 2019/10/14 17:59:49 by apearl           ###   ########.fr       */
+/*   Updated: 2019/10/18 22:32:59 by bkayleen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int 	fill_square(t_field *field, t_item **items, int curr_item)
 
 	if (!items[curr_item])
 		return (1);
+	dot = (t_point *)malloc(sizeof(t_point));
 	dot->x = 0;
 	while (dot->x < field->size)
 	{
