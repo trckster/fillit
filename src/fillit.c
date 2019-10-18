@@ -6,7 +6,7 @@
 /*   By: apearl <apearl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 14:16:14 by bkayleen          #+#    #+#             */
-/*   Updated: 2019/10/18 21:59:19 by bkayleen         ###   ########.fr       */
+/*   Updated: 2019/10/18 22:30:43 by bkayleen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,46 @@ int		get_next_square(int fd, char ***fin)
 	return (1);
 }
 
+void	add_point(t_item *item, int i, int j, int cnt)
+{
+	t_point	*p;
+
+	p = (t_point *)malloc(sizeof(t_point));
+	p->x = i;
+	p->y = -j;
+	if (!cnt)
+		item->p1 = p;
+	else if (cnt == 1)
+		item->p2 = p;
+	else if (cnt == 2)
+		item->p3 = p;
+	else if (cnt == 3)
+		item->p4 = p;
+}
+
+t_item	*get_item_from_block(char **s)
+{
+	int		i;
+	int		j;
+	int		cnt;
+	t_item	*item;
+
+	i = 0;
+	cnt = 0;
+	while (i < 4)
+	{
+		j = 0;
+		while (j < 4)
+		{
+			if (s[i][j] == '#')
+				add_point(item, i, j, res);
+			j++;
+		}
+		i++;
+	}
+	return (item);
+}
+
 t_item	**load_data(char *fn)
 {
 	char    **next_block;
@@ -56,7 +96,7 @@ t_item	**load_data(char *fn)
 		if (valid)
 			items[i++] = get_item_from_block(next_block);
 		else
-			return (free_data(items));
+			return (0);//free_data(items));
 	}
 	items[i] = 0;
 	return (items);
