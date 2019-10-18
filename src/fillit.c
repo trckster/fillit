@@ -6,7 +6,7 @@
 /*   By: apearl <apearl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 14:16:14 by bkayleen          #+#    #+#             */
-/*   Updated: 2019/10/18 21:52:36 by bkayleen         ###   ########.fr       */
+/*   Updated: 2019/10/18 21:59:19 by bkayleen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int		get_next_square(int fd, char ***fin)
 	while (i < 4)
 	{
 		res = get_next_line(fd, &tmp);
+		if (ft_strlen(tmp) != 4)
+			return (0);
 		if (res < 0)
 			return (0);
 		if (!res)
