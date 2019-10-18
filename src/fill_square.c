@@ -6,7 +6,7 @@
 /*   By: apearl <apearl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/13 17:02:26 by bkayleen          #+#    #+#             */
-/*   Updated: 2019/10/18 23:43:14 by bkayleen         ###   ########.fr       */
+/*   Updated: 2019/10/19 00:02:14 by bkayleen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,16 @@
 
 int     item_in_ranges(t_item *item, t_point *dot, int size)
 {
-	printf("FUCK %d ", size);
+	printf("FUCK %d\n", size);
 	printf("IIR: %d %d, %d %d\n", item->p1->x, dot->x, -item->p1->y, dot->y);
+	printf("IIR: %d %d, %d %d\n", item->p2->x, dot->x, -item->p2->y, dot->y);
+	printf("IIR: %d %d, %d %d\n", item->p3->x, dot->x, -item->p3->y, dot->y);
+	printf("IIR: %d %d, %d %d\n", item->p4->x, dot->x, -item->p4->y, dot->y);
 	if (item->p1->x + dot->x >= 0 && -item->p1->y + dot->y < size)
+	{
+		printf("wtf\n");
 		return (0);
+	}
 	if (item->p2->x + dot->x >= 0 && -item->p2->y + dot->y < size)
 		return (0);
 	if (item->p3->x + dot->x >= 0 && -item->p3->y + dot->y < size)
@@ -31,7 +37,7 @@ int		takes_place(t_field *field, t_point *dot, t_item *item, char symbol)
 {
 	if (!item_in_ranges(item, dot, 4))
 		return (0);
-	printf("TP\n");
+	printf("Items are in range!\n");
 	if (field->square[item->p1->x + dot->x][-item->p1->y + dot->y] != '.')
 		return (0);
 	if (field->square[item->p2->x + dot->x][-item->p2->y + dot->y] != '.')
