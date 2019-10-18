@@ -81,7 +81,6 @@ int		process_algorithm(t_item **items)
 	int		square_size;
 
 	square_size = get_init_square_size(items);
-	printf("PA: sq size=%d\n", square_size);
 	while (!try_accommodate(items, square_size))
 		square_size++;
 	return (1);

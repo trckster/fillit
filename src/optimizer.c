@@ -54,14 +54,7 @@ void	optimize_data(t_item **data)
 	i = 0;
 	while (data[i])
 	{
-		printf("Optimizing... ");
 		optimize_item(data[i]);
-		printf("Done\n");
-		printf("P number %d\n", i + 1);
-		printf("P1: x=%d, y=%d\n", data[i]->p1->x, data[i]->p1->y);
-		printf("P2: x=%d, y=%d\n", data[i]->p2->x, data[i]->p2->y);
-		printf("P3: x=%d, y=%d\n", data[i]->p3->x, data[i]->p3->y);
-		printf("P4: x=%d, y=%d\n", data[i]->p4->x, data[i]->p4->y);
 		i++;
 	}
 }

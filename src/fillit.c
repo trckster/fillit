@@ -24,7 +24,6 @@ int		get_next_square(int fd, char ***fin)
 	while (i < 4)
 	{
 		res = get_next_line(fd, &tmp);
-		printf("GNS: %d\n", res);
 		if (!res)
 			break ;
 		if (ft_strlen(tmp) != 4)
@@ -87,19 +86,6 @@ t_item	*get_item_from_block(char **s)
 	return (item);
 }
 
-void	logblock(char **s)
-{
-	ft_putstr("       <---------->\n");
-	int i = 0;
-	while (i < 4)
-	{
-			ft_putstr(s[i]);
-			ft_putchar('\n');
-			i++;
-	}
-	ft_putstr("<--------------------------->\n");
-}
-
 t_item	**load_data(char *fn)
 {
 	char    **next_block;
@@ -118,13 +104,11 @@ t_item	**load_data(char *fn)
 			return (0);
 		if (!res)
 			break ;
-		logblock(next_block);
 		if (!correct_block(next_block))
 			return (0);
 		items[i++] = get_item_from_block(next_block);
 	}
 	items[i] = 0;
-	printf("normal load_data ending work\n");
 	return (items);
 }
 
@@ -137,7 +121,6 @@ int     fillit(char *filename)
 	data = load_data(filename);
 	if (!data)
 		return (0);
-	printf("Start processing algoss\n");
 	optimize_data(data);
 	process_algorithm(data);
 	return (1);

@@ -12,9 +12,13 @@
 
 #include "fillit.h"
 
-void    show_usage()
+void    show_usage(char *exec_name)
 {
-	ft_putstr("usage: <>< ><> < <<<<< >>>>\n");
+	ft_putstr(exec_name);
+	ft_putstr(": missing file with tetraminos\n");
+	ft_putstr("Try '");
+	ft_putstr(exec_name);
+	ft_putstr(" file_with_tetraminos'\n");
 }
 
 void    show_error()
@@ -26,7 +30,7 @@ int     main(int argc, char **argv)
 {
 	if (argc != 2)
 	{
-        show_usage();
+        show_usage(argv[0]);
 		return (1);
 	}
 	if (!fillit(argv[1]))
