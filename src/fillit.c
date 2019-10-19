@@ -42,8 +42,12 @@ int		get_next_square(int fd, char ***fin)
 	}
 	if (res)
 	{
+		/** here comes trouble */
 		if (get_next_line(fd, &tmp, 0))
+		{
 			free(tmp);
+			return (-1);
+		}
 		*fin = sq;
 	}
 	else
