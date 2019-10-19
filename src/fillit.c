@@ -42,11 +42,11 @@ int		get_next_square(int fd, char ***fin)
 	}
 	if (res)
 	{
-		/** here comes trouble */
-		if (get_next_line(fd, &tmp, 0))
-		{
+		if (get_next_line(fd, &tmp, 0)) {
+			int len = ft_strlen(tmp);
 			free(tmp);
-			return (-1);
+			if (len)
+				return (-1);
 		}
 		*fin = sq;
 	}
