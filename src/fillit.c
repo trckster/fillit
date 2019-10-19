@@ -6,7 +6,7 @@
 /*   By: apearl <apearl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 14:16:14 by bkayleen          #+#    #+#             */
-/*   Updated: 2019/10/19 12:44:59 by bkayleen         ###   ########.fr       */
+/*   Updated: 2019/10/19 14:28:32 by bkayleen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,48 +19,39 @@ int		get_next_square(int fd, char ***fin)
 	int		res;
 	char	**sq;
 
-	sq = (char **)malloc(sizeof(char *) * 4);
+	sq = init_4_len_sq();
 	i = 0;
 	while (i < 4)
 	{
 		res = get_next_line(fd, &tmp, 0);
 		if (!res)
-			break ;
+		{
+			if (tmp)
+				return (-1);
+			if (i <= 3 && i >= 0)
+				return (free_square(sq));
+		}
 		if (res < 0)
 			return (-1);
 		if (ft_strlen(tmp) != 4)
 		{
 			get_next_line(fd, &tmp, 1);
 			free(tmp);
-			while (i > 0)
-				free(sq[--i]);
-			free(sq);
-			return (-1);
+			return (free_square(sq));
 		}
 		sq[i] = tmp;
 		i++;
 	}
-	if (res)
-	{
-		if (get_next_line(fd, &tmp, 0)) {
-			int len = ft_strlen(tmp);
-			free(tmp);
-			if (len)
-			{
-				while (i--)
-					free(sq[i]);
-				free(sq);
-				return (-1);
-			}
-		}
-		*fin = sq;
-	}
-	else
+	res = get_next_line(fd, &tmp, 0);
+	if (tmp && ft_strlen(tmp))
 	{
 		free(tmp);
-		free(sq);
+		return (free_square(sq));
 	}
-	return (res);
+	*fin = sq;
+	if (!tmp)
+		return (0);
+	return (1);
 }
 
 void	add_point(t_item *item, int i, int j, int cnt)
@@ -109,11 +100,11 @@ t_item	*get_item_from_block(char **s)
 
 t_item	**load_data(char *fn)
 {
-	char    **next_block;
-	int     fd;
+	char	**next_block;
+	int		fd;
 	t_item	**items;
 	int		i;
-	int     res;
+	int		res;
 
 	fd = open(fn, O_RDONLY);
 	items = (t_item **)malloc(sizeof(t_item *) * 27);
@@ -129,8 +120,6 @@ t_item	**load_data(char *fn)
 			return (0);
 		}
 		res = get_next_square(fd, &next_block);
-		if (!res)
-			break ;
 		if (res < 0)
 		{
 			free_items(items);
@@ -143,12 +132,14 @@ t_item	**load_data(char *fn)
 		}
 		items[i++] = get_item_from_block(next_block);
 		free_next_block(next_block);
+		if (!res)
+			break ;
 	}
 	items[i] = 0;
 	return (items);
 }
 
-int     fillit(char *filename)
+int		fillit(char *filename)
 {
 	t_item **data;
 

@@ -6,7 +6,7 @@
 /*   By: bkayleen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/13 16:09:38 by bkayleen          #+#    #+#             */
-/*   Updated: 2019/10/18 22:37:21 by bkayleen         ###   ########.fr       */
+/*   Updated: 2019/10/19 13:38:49 by bkayleen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,16 @@ int		ft_sqrt(int n)
 	while (i * i < n)
 		i++;
 	return (i);
+}
+
+char	**init_4_len_sq(void)
+{
+	char	**s;
+	int		i;
+
+	i = 0;
+	s = (char **)malloc(sizeof(char *) * 4);
+	while (i < 4)
+		s[i++] = 0;
+	return (s);
 }

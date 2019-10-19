@@ -6,13 +6,13 @@
 /*   By: bkayleen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 14:16:14 by bkayleen          #+#    #+#             */
-/*   Updated: 2019/10/19 12:41:48 by bkayleen         ###   ########.fr       */
+/*   Updated: 2019/10/19 12:53:51 by bkayleen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void    show_usage(char *exec_name)
+void	show_usage(char *exec_name)
 {
 	ft_putstr(exec_name);
 	ft_putstr(": missing file with tetraminos\n");
@@ -21,24 +21,19 @@ void    show_usage(char *exec_name)
 	ft_putstr(" file_with_tetraminos'\n");
 }
 
-void    show_error()
+void	show_error(void)
 {
 	ft_putstr("error\n");
 }
 
-int     main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
 	if (argc != 2)
 	{
-        show_usage(argv[0]);
+		show_usage(argv[0]);
 		return (1);
 	}
 	if (!fillit(argv[1]))
 		show_error();
-	while (1)
-		{
-			int i = 1;
-			i++;
-		}
-    return (0);
+	return (0);
 }

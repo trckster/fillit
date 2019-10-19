@@ -6,7 +6,7 @@
 /*   By: bkayleen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/13 16:00:58 by bkayleen          #+#    #+#             */
-/*   Updated: 2019/10/18 23:10:17 by bkayleen         ###   ########.fr       */
+/*   Updated: 2019/10/19 13:39:20 by bkayleen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	clear_square(t_field *field)
 	}
 }
 
-void    print_answer(t_field *field)
+void	print_answer(t_field *field)
 {
 	int i;
 	int j;
@@ -87,5 +87,3 @@ int		process_algorithm(t_item **items)
 		square_size++;
 	return (1);
 }
-
-
