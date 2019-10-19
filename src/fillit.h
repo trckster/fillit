@@ -50,5 +50,8 @@ void            print_answer(t_field *field);
 int             get_next_line(const int fd, char **line);
 int				correct_block(char **s);
 void			optimize_data(t_item **items);
+void            free_items(t_item **items);
+void            free_field(t_field *field);
+void            free_next_block(char **nb);
 
 #endif

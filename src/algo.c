@@ -71,8 +71,10 @@ int		try_accommodate(t_item **items, int square_size)
 	if (fill_square(field, items, 0))
 	{
 		print_answer(field);
+		free_field(field);
 		return (1);
 	}
+	free_field(field);
 	return (0);
 }
 

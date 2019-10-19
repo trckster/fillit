@@ -63,7 +63,6 @@ void    clear_place(t_field *field, t_point *dot, t_item *item)
 int 	fill_square(t_field *field, t_item **items, int curr_item)
 {
 	t_point *dot;
-	int     res;
 
 	if (!items[curr_item])
 		return (1);
@@ -76,9 +75,11 @@ int 	fill_square(t_field *field, t_item **items, int curr_item)
 		{
 			if (takes_place(field, dot, items[curr_item], 'A' + curr_item))
 			{
-				res = fill_square(field, items, curr_item + 1);
-				if (res)
+				if (fill_square(field, items, curr_item + 1))
+				{
+					free(dot);
 					return (1);
+				}
 				else
 					clear_place(field, dot, items[curr_item]);
 			}

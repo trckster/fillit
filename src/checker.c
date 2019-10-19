@@ -67,7 +67,7 @@ int		get_count(char **s, int i, int j)
 	return (lr + ud + 1);
 }
 
-int		good_tetr(char **s)
+int		good_tetramino(char **s)
 {
 	int	i;
 	int	j;
@@ -78,5 +78,5 @@ int		good_tetr(char **s)
 
 int		correct_block(char **s)
 {
-	return (good_symbols(s) && good_tetr(s));
+	return (good_symbols(s) && good_tetramino(s));
 }

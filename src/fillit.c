@@ -26,20 +26,28 @@ int		get_next_square(int fd, char ***fin)
 		res = get_next_line(fd, &tmp);
 		if (!res)
 			break ;
-		if (ft_strlen(tmp) != 4)
-			return (-1);
 		if (res < 0)
 			return (-1);
+		if (ft_strlen(tmp) != 4)
+		{
+			free(tmp);
+			return (-1);
+		}
 		sq[i] = tmp;
 		i++;
 	}
 	if (res)
 	{
-		get_next_line(fd, &tmp);
+		if (get_next_line(fd, &tmp))
+			free(tmp);
 		*fin = sq;
-		return (1);
 	}
-	return (0);
+	else
+	{
+		free(tmp);
+		free(sq);
+	}
+	return (res);
 }
 
 void	add_point(t_item *item, int i, int j, int cnt)
@@ -100,13 +108,17 @@ t_item	**load_data(char *fn)
 	while (1)
 	{
 		res = get_next_square(fd, &next_block);
+		if (!res)
+			break;
 		if (res < 0)
 			return (0);
-		if (!res)
-			break ;
 		if (!correct_block(next_block))
+		{
+			free_next_block(next_block);
 			return (0);
+		}
 		items[i++] = get_item_from_block(next_block);
+		free_next_block(next_block);
 	}
 	items[i] = 0;
 	return (items);
@@ -120,8 +132,12 @@ int     fillit(char *filename)
 		return (0);
 	data = load_data(filename);
 	if (!data)
+	{
+		free_items(data);
 		return (0);
+	}
 	optimize_data(data);
 	process_algorithm(data);
+	free_items(data);
 	return (1);
 }
