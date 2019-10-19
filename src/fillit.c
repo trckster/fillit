@@ -6,7 +6,7 @@
 /*   By: apearl <apearl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 14:16:14 by bkayleen          #+#    #+#             */
-/*   Updated: 2019/10/19 15:40:51 by bkayleen         ###   ########.fr       */
+/*   Updated: 2019/10/19 16:52:17 by bkayleen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ int		get_next_square(int fd, char ***fin)
 		if (!res && (tmp || (i <= 3 && i >= 0)))
 			return (free_square(sq));
 		if (ft_strlen(tmp) != 4)
-			return (get_next_line(fd, &tmp, 1) + free_tmp_with_square(sq, tmp));
+			return (free_tmp_with_square(sq, tmp) + get_next_line(fd, &tmp, 1));
 		sq[i++] = tmp;
 	}
 	res = get_next_line(fd, &tmp, 0);
 	if (tmp && ft_strlen(tmp))
-		return (free_tmp_with_square(sq, tmp));
+		return (free_tmp_with_square(sq, tmp) + get_next_line(fd, &tmp, 1));
 	*fin = sq;
 	if (!tmp)
 		return (0);

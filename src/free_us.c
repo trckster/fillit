@@ -6,7 +6,7 @@
 /*   By: apearl <apearl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/19 14:16:14 by bkayleen          #+#    #+#             */
-/*   Updated: 2019/10/19 15:33:22 by bkayleen         ###   ########.fr       */
+/*   Updated: 2019/10/19 16:48:51 by bkayleen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int		free_square(char **s)
 	int i;
 
 	i = 0;
-	while (s[i] && i < 4)
+	while (i < 4 && s[i])
 		free(s[i++]);
 	free(s);
 	return (-1);
