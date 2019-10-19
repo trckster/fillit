@@ -6,7 +6,7 @@
 /*   By: apearl <apearl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 14:16:14 by bkayleen          #+#    #+#             */
-/*   Updated: 2019/10/18 23:25:45 by bkayleen         ###   ########.fr       */
+/*   Updated: 2019/10/19 12:44:59 by bkayleen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,12 @@ int		get_next_square(int fd, char ***fin)
 			int len = ft_strlen(tmp);
 			free(tmp);
 			if (len)
+			{
+				while (i--)
+					free(sq[i]);
+				free(sq);
 				return (-1);
+			}
 		}
 		*fin = sq;
 	}
