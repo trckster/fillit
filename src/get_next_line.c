@@ -54,12 +54,20 @@ void		strjoin_with_clear(char **s, char *buff)
 	free(tmp);
 }
 
-int			get_next_line(const int fd, char **line)
+int        kill_data(char *s)
+{
+	free(s);
+	return (0);
+}
+
+int			get_next_line(const int fd, char **line, int fin)
 {
 	static char *s[MAX_FD_COUNT];
 	char		buffer[BUFF_SIZE + 1];
 	int			ret;
 
+	if (fin)
+		return (kill_data(s[fd]));
 	if (fd < 0 || !line)
 		return (-1);
 	if (!s[fd])

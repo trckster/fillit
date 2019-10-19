@@ -47,7 +47,7 @@ int				fillit(char *s);
 int 	        fill_square(t_field *field, t_item **items, int curr_item);
 int		        process_algorithm(t_item **items);
 void            print_answer(t_field *field);
-int             get_next_line(const int fd, char **line);
+int             get_next_line(const int fd, char **line, int c);
 int				correct_block(char **s);
 void			optimize_data(t_item **items);
 void            free_items(t_item **items);

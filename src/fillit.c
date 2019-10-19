@@ -23,14 +23,18 @@ int		get_next_square(int fd, char ***fin)
 	i = 0;
 	while (i < 4)
 	{
-		res = get_next_line(fd, &tmp);
+		res = get_next_line(fd, &tmp, 0);
 		if (!res)
 			break ;
 		if (res < 0)
 			return (-1);
 		if (ft_strlen(tmp) != 4)
 		{
+			get_next_line(fd, &tmp, 1);
 			free(tmp);
+			while (i > 0)
+				free(sq[--i]);
+			free(sq);
 			return (-1);
 		}
 		sq[i] = tmp;
@@ -38,7 +42,7 @@ int		get_next_square(int fd, char ***fin)
 	}
 	if (res)
 	{
-		if (get_next_line(fd, &tmp))
+		if (get_next_line(fd, &tmp, 0))
 			free(tmp);
 		*fin = sq;
 	}
@@ -105,13 +109,24 @@ t_item	**load_data(char *fn)
 	fd = open(fn, O_RDONLY);
 	items = (t_item **)malloc(sizeof(t_item *) * 27);
 	i = 0;
+	while (i < 27)
+		items[i++] = 0;
+	i = 0;
 	while (1)
 	{
+		if (i >= 26)
+		{
+			free_items(items);
+			return (0);
+		}
 		res = get_next_square(fd, &next_block);
 		if (!res)
-			break;
+			break ;
 		if (res < 0)
+		{
+			free_items(items);
 			return (0);
+		}
 		if (!correct_block(next_block))
 		{
 			free_next_block(next_block);
@@ -132,10 +147,7 @@ int     fillit(char *filename)
 		return (0);
 	data = load_data(filename);
 	if (!data)
-	{
-		free_items(data);
 		return (0);
-	}
 	optimize_data(data);
 	process_algorithm(data);
 	free_items(data);
