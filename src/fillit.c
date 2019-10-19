@@ -6,7 +6,7 @@
 /*   By: apearl <apearl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 14:16:14 by bkayleen          #+#    #+#             */
-/*   Updated: 2019/10/19 14:28:32 by bkayleen         ###   ########.fr       */
+/*   Updated: 2019/10/19 15:40:51 by bkayleen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,31 +23,17 @@ int		get_next_square(int fd, char ***fin)
 	i = 0;
 	while (i < 4)
 	{
-		res = get_next_line(fd, &tmp, 0);
-		if (!res)
-		{
-			if (tmp)
-				return (-1);
-			if (i <= 3 && i >= 0)
-				return (free_square(sq));
-		}
-		if (res < 0)
+		if ((res = get_next_line(fd, &tmp, 0)) < 0)
 			return (-1);
-		if (ft_strlen(tmp) != 4)
-		{
-			get_next_line(fd, &tmp, 1);
-			free(tmp);
+		if (!res && (tmp || (i <= 3 && i >= 0)))
 			return (free_square(sq));
-		}
-		sq[i] = tmp;
-		i++;
+		if (ft_strlen(tmp) != 4)
+			return (get_next_line(fd, &tmp, 1) + free_tmp_with_square(sq, tmp));
+		sq[i++] = tmp;
 	}
 	res = get_next_line(fd, &tmp, 0);
 	if (tmp && ft_strlen(tmp))
-	{
-		free(tmp);
-		return (free_square(sq));
-	}
+		return (free_tmp_with_square(sq, tmp));
 	*fin = sq;
 	if (!tmp)
 		return (0);
@@ -107,29 +93,15 @@ t_item	**load_data(char *fn)
 	int		res;
 
 	fd = open(fn, O_RDONLY);
-	items = (t_item **)malloc(sizeof(t_item *) * 27);
-	i = 0;
-	while (i < 27)
-		items[i++] = 0;
+	items = init_27_items();
 	i = 0;
 	while (1)
 	{
-		if (i >= 26)
-		{
-			free_items(items);
-			return (0);
-		}
 		res = get_next_square(fd, &next_block);
-		if (res < 0)
-		{
-			free_items(items);
-			return (0);
-		}
+		if (i >= 26 || res < 0)
+			return (free_items(items));
 		if (!correct_block(next_block))
-		{
-			free_next_block(next_block);
-			return (0);
-		}
+			return (free_next_block(next_block));
 		items[i++] = get_item_from_block(next_block);
 		free_next_block(next_block);
 		if (!res)

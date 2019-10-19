@@ -6,7 +6,7 @@
 /*   By: bkayleen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 20:42:17 by bkayleen          #+#    #+#             */
-/*   Updated: 2019/10/19 14:15:46 by bkayleen         ###   ########.fr       */
+/*   Updated: 2019/10/19 15:11:20 by bkayleen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,5 @@ int			get_next_line(const int fd, char **line, int fin)
 	if (has_lb(s[fd]))
 		return (found_and_erase(&s[fd], line));
 	*line = s[fd];
-	return (!ret && (!s[fd] || !*s[fd]) ? !!(*line = 0) : !(s[fd] = 0));
+	return (!ret && (!s[fd] || !*s[fd]) ? !!(*line = 0) : 1);
 }

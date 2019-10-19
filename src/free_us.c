@@ -6,13 +6,13 @@
 /*   By: apearl <apearl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/19 14:16:14 by bkayleen          #+#    #+#             */
-/*   Updated: 2019/10/19 13:22:33 by bkayleen         ###   ########.fr       */
+/*   Updated: 2019/10/19 15:33:22 by bkayleen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void	free_items(t_item **items)
+t_item	**free_items(t_item **items)
 {
 	int i;
 
@@ -27,9 +27,10 @@ void	free_items(t_item **items)
 		i++;
 	}
 	free(items);
+	return (0);
 }
 
-void	free_next_block(char **next_block)
+t_item	**free_next_block(char **next_block)
 {
 	int i;
 
@@ -40,6 +41,7 @@ void	free_next_block(char **next_block)
 		i++;
 	}
 	free(next_block);
+	return (0);
 }
 
 void	free_field(t_field *field)
@@ -65,4 +67,10 @@ int		free_square(char **s)
 		free(s[i++]);
 	free(s);
 	return (-1);
+}
+
+int		free_tmp_with_square(char **s, char *tmp)
+{
+	free(tmp);
+	return (free_square(s));
 }

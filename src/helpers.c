@@ -6,7 +6,7 @@
 /*   By: bkayleen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/13 16:09:38 by bkayleen          #+#    #+#             */
-/*   Updated: 2019/10/19 13:38:49 by bkayleen         ###   ########.fr       */
+/*   Updated: 2019/10/19 15:20:15 by bkayleen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,19 @@ char	**init_4_len_sq(void)
 	while (i < 4)
 		s[i++] = 0;
 	return (s);
+}
+
+t_item	**init_27_items(void)
+{
+	t_item	**items;
+	int		i;
+
+	i = 0;
+	items = (t_item **)malloc(sizeof(t_item *) * 27);
+	while (i < 27)
+	{
+		items[i] = 0;
+		i++;
+	}
+	return (items);
 }

@@ -6,7 +6,7 @@
 /*   By: apearl <apearl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/13 15:57:29 by bkayleen          #+#    #+#             */
-/*   Updated: 2019/10/19 13:35:45 by bkayleen         ###   ########.fr       */
+/*   Updated: 2019/10/19 15:33:10 by bkayleen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,12 @@ void			print_answer(t_field *field);
 int				get_next_line(const int fd, char **line, int c);
 int				correct_block(char **s);
 void			optimize_data(t_item **items);
-void			free_items(t_item **items);
+t_item			**free_items(t_item **items);
 void			free_field(t_field *field);
-void			free_next_block(char **nb);
+t_item			**free_next_block(char **nb);
 int				free_square(char **s);
 char			**init_4_len_sq(void);
+t_item			**init_27_items(void);
+int				free_tmp_with_square(char **s, char *tmp);
 
 #endif
